@@ -6,7 +6,7 @@
 #define NUM_THREADS 8       //number of threads
 #define TOT_COUNT 500000000 //total number of iterations
 
-pthread_mutex_t lock = PTHREAD_MUTEX_INITIALIZER;
+
 pthread_mutex_t lock2 = PTHREAD_MUTEX_INITIALIZER;
 long gen;
 float randNumGen()
@@ -44,9 +44,9 @@ void doCalcs()
 
         if (result < 1)
         {
-            pthread_mutex_lock(&lock);
+            
             in_count += 1; //check if the generated value is inside a unit circle
-            pthread_mutex_unlock(&lock);
+           
         }
     }
     pthread_mutex_lock(&lock2);
@@ -85,7 +85,7 @@ int main(int argc, char *argv[])
     printf("Value for Pi is %f \n", 4 * (gen2 / TOT_COUNT));
 
     /* Last thing that main() should do */
-    pthread_mutex_destroy(&lock);
+    
     pthread_mutex_destroy(&lock2);
 
     clock_t end = clock();
